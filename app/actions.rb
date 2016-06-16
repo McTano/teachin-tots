@@ -1,9 +1,5 @@
 # Homepage (Root path)
 helpers do
-  def current_game
-    Game.find(session[:id]) if session[:id]
-  end
-
   def start_game
     game = Game.new
     session[:id] = game.id
@@ -16,6 +12,6 @@ get '/' do
 end
 
 post '/play' do
-  @game = start_game unless current_game
+  @game = start_game
   erb :"play/index"
 end
