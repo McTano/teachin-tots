@@ -1,6 +1,6 @@
 class Question
 
-  attr_reader :choices
+  attr_reader :choices, :word
 
   def initialize
     @word = "cat"
