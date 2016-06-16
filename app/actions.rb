@@ -11,6 +11,11 @@ get '/' do
   erb :index
 end
 
+get '/play' do
+  @game = start_game
+  erb :"play/index"
+end
+
 post '/play' do
   @game = start_game
   erb :"play/index"
