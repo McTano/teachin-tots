@@ -2,15 +2,15 @@ class Game
 
   attr_reader :id
 
-  @@games = []
+  # @@games = []
 
-  def self.find(id)
-    @@games[id]
-  end
+  # def self.find(id)
+  #   @@games[id]
+  # end
 
   def initialize
-    @@games << self
-    @id = @@games.length - 1
+    # @@games << self
+    # @id = @@games.length - 1
 
     # creates the question set for this game.
     @questions = []
