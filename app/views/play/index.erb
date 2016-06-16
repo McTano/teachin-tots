@@ -1,0 +1,12 @@
+<% choices_array = @game.current_question.choices %> <!--bad ruby -->
+<form method="post" action="/play">
+  <% @game.current_question.choices.each do |choice_url| %>
+    <div class="img-choices" style="display:inline-flex;flex-direction:rows">
+      <div class="img-holder">
+        <img src="<%= choice_url %>" height="100" width="200">
+        <input type="radio" name="choice_url">
+      </div>
+    </div>
+  <% end %>
+
+</form>
