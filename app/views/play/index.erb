@@ -1,12 +1,19 @@
 <% choices_array = @game.current_question.choices %> <!--bad ruby -->
 <form method="post" action="/play">
-  <% @game.current_question.choices.each do |choice_url| %>
-    <div class="img-choices" style="display:inline-flex;flex-direction:rows">
+  <% @game.current_question.choices.each_with_index do |choice_url, index| %>
+    <div class="img-choices" style="display:inline-flex;flex-direction:rows; border-style: solid; border-color: <%= @previous_answer == index ? @border_color : 'transparent' %>">
       <div class="img-holder">
         <img src="<%= choice_url %>" height="100" width="200">
-        <input type="radio" name="choice_url">
+        <input type="radio" name="choice_index" value="<%= choices_array.find_index(choice_url) %>">
       </div>
     </div>
   <% end %>
 
+  <div id="question">
+    <h2><%= @game.current_question.word %></h2>
+  </div>
+
+  <button type="submit">
+    Submit!
+  </button>
 </form>
