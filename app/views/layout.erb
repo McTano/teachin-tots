@@ -6,7 +6,7 @@
     differences in how form elements appear between Firefox and IE
     See: http://necolas.github.com/normalize.css/
   -->
-  <link rel="stylesheet" href="/stylesheets/normalize.css">
+  <link rel="stylesheet" href="/stylesheets/bulma.min.css">
   <!--
     application.css is where you put your styles
   -->
@@ -18,14 +18,8 @@
   <title></title>
 </head>
 <body>
-  <div class="header div">
-    <p>
-      This is the top div with logo and buttons
-    </p>
-  </div>
-  <div class="container">
-    <%= yield %>
-  </div>
+  <%= erb :menu %>
+  <%= yield %>
 </body>
 </html>
 
