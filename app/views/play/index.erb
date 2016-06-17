@@ -1,15 +1,14 @@
-<h2> It's time for question #: <%= @game.number_of_current_question %></h2>
-<% if flash[:info] %>
-  <h2><%= flash[:info] %></h2>
-  <% flash[:info] = nil %>
-<% end %>
-
 <div class="container has-text-centered">
+  <p class="title">Question <%= @game.number_of_current_question %></p>
+  <% if flash[:info] %>
+    <h2><%= flash[:info] %></h2>
+    <% flash[:info] = nil %>
+  <% end %>
   <% if flash[:info] %>
     <h2 style='font-color:red'><%= flash[:info] %></h2>
   <% end %>
   <% choices_array = @game.current_question.choices %>
-  <div class="container" style="padding: 128px">
+  <div class="container">
   <form method="post" action="/play">
     <% @game.current_question.choices.each_with_index do |choice_url, index| %>
       <div style="display:inline-flex;flex-direction:rows;">
@@ -37,4 +36,5 @@
     </button>
   </form>
   </div>
+  <progress class="progress is-primary" value="<%= @game.number_of_current_question %>" max="10"><%= Game::NUMBER_OF_QUESTIONS %>%</progress>
 </div>

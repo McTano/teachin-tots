@@ -1,4 +1,17 @@
 .nav {
-  padding-left: 16px;
-  padding-right: 16px;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+#main-container {
+  margin-top: 128px;
+}
+
+#navbar {
+  background-color: $warning;
+}
+
+progress {
+  margin-top: 28px;
+  margin-bottom: 28px;
 }
