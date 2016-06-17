@@ -10,17 +10,32 @@ get '/' do
 end
 
 post '/play' do
-  @game = session[:game]  
-  if params[:choice_index] && @game.current_question.correct?(params[:choice_index].to_i)
-    @border_color = 'green'
+  #set game to current game via session
+  @game = session[:game] 
+
+  redirect '/end' unless @game.current_question
+
+  unless params[:button] == 'next'
+    #if choice of an answer is passed in params and the choice is correct set border to green otherwise to red
+    if params[:choice_index] && @game.current_question.correct?(params[:choice_index].to_i)
+      @border_color = 'green'
+    else 
+      @border_color = 'red'
+    end
+    #record the choice of the previous answer to an instance variable to pass on to play/index.erb
+    @previous_answer = params[:choice_index].to_i
   else
-    @border_color = 'red'
+    @game.next_question
   end
-  @previous_answer = params[:choice_index].to_i
-  erb :"play/index"
+
+  erb :'play/index'
 end
 
 get '/play' do
   @game = start_game
-  erb :"play/index"
+  erb :'play/index'
+end
+
+get '/end' do
+  erb :'end/index'
 end

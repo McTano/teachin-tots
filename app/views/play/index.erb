@@ -1,10 +1,12 @@
-<% choices_array = @game.current_question.choices %> <!--bad ruby -->
+<% choices_array = @game.current_question.choices %> 
 <form method="post" action="/play">
   <% @game.current_question.choices.each_with_index do |choice_url, index| %>
-    <div class="img-choices" style="display:inline-flex;flex-direction:rows; border-style: solid; border-color: <%= @previous_answer == index ? @border_color : 'transparent' %>">
+    <div class="img-choices" style="display:inline-flex;flex-direction:rows;"">
       <div class="img-holder">
-        <img src="<%= choice_url %>" height="100" width="200">
-        <input type="radio" name="choice_index" value="<%= choices_array.find_index(choice_url) %>">
+        <img src="<%= choice_url %>" height="100" width="200" style="border:2px solid <%= @border_color && @previous_answer == index ? @border_color : 'transparent' %>">
+        <% unless @previous_answer %>
+          <input type="radio" name="choice_index" value="<%= choices_array.find_index(choice_url) %>">
+        <% end %>
       </div>
     </div>
   <% end %>
@@ -13,7 +15,7 @@
     <h2><%= @game.current_question.word %></h2>
   </div>
 
-  <button type="submit">
-    Submit!
+  <button type="submit" name="button" value="<%= 'next' if @border_color && @border_color == 'green' %>">
+    <%= @border_color && @border_color == 'green' ? 'Next' : 'Submit' %>
   </button>
 </form>
