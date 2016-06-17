@@ -1,22 +1,14 @@
 class Game
 
-  attr_reader :id
-
-  # @@games = []
-
-  # def self.find(id)
-  #   @@games[id]
-  # end
+  NUMBER_OF_QUESTIONS = 10
 
   def initialize
-    # @@games << self
-    # @id = @@games.length - 1
-
     # creates the question set for this game.
     @questions = []
-    10.times { @questions << Question.new }
+    NUMBER_OF_QUESTIONS.times { @questions << Question.new }
     
     @current_question_index = 0
+    @tries = 0
   end
 
   # if current_question returns nil, then we have
@@ -29,4 +21,11 @@ class Game
     @current_question_index += 1
   end
 
+  def increment_tries
+    @tries += 1
+  end
+
+  def score
+    ((NUMBER_OF_QUESTIONS.to_f / @tries) * 100).to_i
+  end
 end
