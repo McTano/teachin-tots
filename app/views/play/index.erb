@@ -20,7 +20,6 @@
   <div id="question">
     <h2><%= @game.current_question.word %></h2>
   </div>
-
   <button type="submit" name="button" value="<%= 'next' if @border_color && @border_color == 'green' %>">
     <%= @border_color && @border_color == 'green' ? 'Next' : 'Submit' %>
   </button>

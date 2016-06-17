@@ -9,6 +9,7 @@ class Question
     @dummy_1 = @sample[1][:image]
     @dummy_2 = @sample[2][:image]
     @choices = [@correct_image, @dummy_1, @dummy_2].shuffle
+    @sample = nil
   end
 
   def correct?(index)
