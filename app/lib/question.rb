@@ -3,15 +3,16 @@ class Question
   attr_reader :choices, :word
 
   def initialize
-    @word = "cat"
-    @correct_img = "http://i.imgur.com/H10X3rQ.jpg"
-    @dummy_1 = "http://i.imgur.com/PuLsUZI.jpg"
-    @dummy_2 = "http://i.imgur.com/rCoolmO.jpg"
-    @choices = [@correct_img, @dummy_1, @dummy_2].shuffle
+    @sample = Concept.order("RANDOM()").limit(3)
+    @word = @sample[0][:word]
+    @correct_image = @sample[0][:image]
+    @dummy_1 = @sample[1][:image]
+    @dummy_2 = @sample[2][:image]
+    @choices = [@correct_image, @dummy_1, @dummy_2].shuffle
   end
 
   def correct?(index)
-    @choices[index] == @correct_img
+    @choices[index] == @correct_image
   end
 
 end
