@@ -37,15 +37,18 @@
           });
         });
     });
+  </script>
+  <script>
 
     $(function() {
+
         $("#question").draggable({ revert: "invalid" });
-        $("img").droppable({
+        $("img").droppable ( {
           accept: "#question",  
           drop: function( event, ui ) {
-            $( this )
+            $(this)
             .addClass( "answered" );
-          };
+          }
         });
     });
     
