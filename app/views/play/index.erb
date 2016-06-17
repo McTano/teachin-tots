@@ -13,8 +13,8 @@
     <% @game.current_question.choices.each_with_index do |choice_url, index| %>
       <div style="display:inline-flex;flex-direction:rows;">
         <label name="choice_index">
-          <div>
-            <img src="<%= choice_url %>" height="256px" width="256px" style="border:2px solid <%= @border_color && @previous_answer == index ? @border_color : 'transparent' %>">
+          <div id="image_container" class="box" style="background-color: <%= @border_color && @previous_answer == index ? @border_color : 'transparent' %>">
+            <img src="<%= choice_url %>" height="256px" width="256px">
           </div>
           <% unless @previous_answer && @border_color == 'green' %>
             <input type="radio" name="choice_index" value="<%= choices_array.find_index(choice_url) %>">
@@ -36,5 +36,7 @@
     </button>
   </form>
   </div>
-  <progress class="progress is-primary" value="<%= @game.number_of_current_question %>" max="10"><%= Game::NUMBER_OF_QUESTIONS %>%</progress>
+  <div class="container is-fluid" style="margin: 20px;">
+    <progress class="progress is-primary" value="<%= @game.number_of_current_question %>" max="10"><%= Game::NUMBER_OF_QUESTIONS %>%</progress>
+  </div>
 </div>

@@ -1,17 +1,29 @@
 .nav {
-  margin-left: 16px;
-  margin-right: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 #main-container {
-  margin-top: 128px;
+  margin-top: 56px;
 }
 
 #navbar {
   background-color: $warning;
 }
 
-progress {
-  margin-top: 28px;
-  margin-bottom: 28px;
+#image_container {
+  animation-name: slide_in;
+  animation-duration: 2s;
+  animation-timing-function: ease-out;
+}
+
+@keyframes slide_in {
+  from {
+      transform: translateY(100px);
+      opacity: 0;
+  }
+  to {
+      transform: translateY(0);
+      opacity: 1;
+  }
 }
