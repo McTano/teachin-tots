@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/stylesheets/application.css">
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
   <script src="/javascript/application.js"></script>
   <script>
     $(function () {
@@ -33,22 +34,31 @@
             data: form.serialize(),
             success: function (res) {
               $('body').html(res);
+              $('#question').draggable({ revert: 'invalid'});
+
+
             }
           });
         });
     });
   </script>
   <script>
+    $(document).on('ready ajaxSuccess', function() {
 
-    $(function() {
+      $('#question').on('mouseover',function () { $(this).css('cursor','pointer')});
 
-        $("#question").draggable({ revert: "invalid" });
-        $("img").droppable ( {
-          accept: "#question",  
-          drop: function( event, ui ) {
-            $(this)
-            .addClass( "answered" );
-          }
+      $("#question").draggable({ revert: "invalid" });
+      $("img").droppable ( {
+        accept: "#question",  
+        drop: function( event, ui ) {
+          $(this)
+          .addClass( "answered" );
+        }
+      });
+
+      $('label')
+        .on('drop', function() {
+          $(this).children('input[type=radio]').prop('checked', true).change();
         });
     });
     
