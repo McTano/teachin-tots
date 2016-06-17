@@ -2,7 +2,7 @@ class Game
 
   NUMBER_OF_QUESTIONS = 10
 
-  attr_reader :current_question, :number_of_current_question
+  attr_reader :number_of_current_question
 
   def initialize
     @number_of_current_question = 1
@@ -17,6 +17,10 @@ class Game
 
   def increment_tries
     @tries += 1
+  end
+
+  def current_question
+    @current_question unless @number_of_current_question > 10
   end
 
   def score
