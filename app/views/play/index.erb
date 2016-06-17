@@ -8,7 +8,9 @@
     <h2 style='font-color:red'><%= flash[:info] %></h2>
   <% end %>
   <% choices_array = @game.current_question.choices %>
+
   <div class="container">
+
   <form method="post" action="/play">
     <% @game.current_question.choices.each_with_index do |choice_url, index| %>
       <div style="display:inline-flex;flex-direction:rows;">
@@ -23,20 +25,27 @@
       </div>
     <% end %>
 
-    <div class="content is-large">
-      <% unless @border_color == 'green' %>
-        <p>Click <strong><%= @game.current_question.word %></strong> and then Submit</p>
-      <% else %>
-        <h1>Correct!</h1>
-      <% end %>
-    </div>
 
-    <button class="button is-large is-primary" type="submit" name="button" value="<%= 'next' if @border_color && @border_color == 'green' %>">
-      <%= @border_color && @border_color == 'green' ? 'Next' : 'Submit' %>
-    </button>
-  </form>
+      <div class="content is-large">
+        <% unless @border_color == 'green' %>
+          <p>Click and drag <strong id="question" class="button"><%= @game.current_question.word %></strong> to the correct picture.</p>
+        <% else %>
+          <h1>Correct!</h1>
+        <% end %>
+      </div>
+
+      <button id="submit-button" class="button is-large is-primary" type="submit">
+        Submit
+      </button>
+
+    </form>
+
+      <span><a class='button is-large is-primary' id="button-next">Next</a></span>
+
   </div>
+
   <div class="container is-fluid" style="margin: 20px;">
     <progress class="progress is-primary" value="<%= @game.number_of_current_question %>" max="10"><%= Game::NUMBER_OF_QUESTIONS %>%</progress>
   </div>
+
 </div>
