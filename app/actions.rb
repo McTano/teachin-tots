@@ -24,8 +24,3 @@ post '/play' do
   @previous_answer = params[:choice_index].to_i
   erb :"play/index"
 end
-
-get '/play' do
-  @game = start_game
-  erb :"play/index"
-end
