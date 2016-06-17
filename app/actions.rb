@@ -9,6 +9,11 @@ get '/' do
   erb :index
 end
 
+get '/play' do
+  @game = start_game
+  erb :"play/index"
+end
+
 post '/play' do
   #set game to current game via session
   @game = session[:game]
@@ -28,11 +33,6 @@ post '/play' do
     redirect '/end' unless @game.current_question
   end
 
-  erb :'play/index'
-end
-
-get '/play' do
-  @game = start_game
   erb :'play/index'
 end
 
