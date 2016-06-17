@@ -1,3 +1,6 @@
+<% if flash[:info] %>
+  <h2 style='font-color:red'><%= flash[:info] %></h2>
+<% end %>
 <% choices_array = @game.current_question.choices %> 
 <form method="post" action="/play">
   <% @game.current_question.choices.each_with_index do |choice_url, index| %>
