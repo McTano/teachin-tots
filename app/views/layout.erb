@@ -34,12 +34,19 @@
             data: form.serialize(),
             success: function (res) {
               $('body').html(res);
-              $('#question').draggable({ revert: 'invalid'});
-
-
             }
           });
-        });
+        })
+        .on('click', '#button-next', function () {
+          $.ajax({
+            url: '/play',
+            method: 'POST',
+            data: { button: 'next' },
+            success: function (res) {
+              $('body').html(res);
+            }
+          });
+        })
     });
   </script>
   <script>
@@ -63,6 +70,13 @@
     });
     
   </script>
+  <style>
+    input[type='radio'] {
+      position:absolute;
+      left:-99em;
+    }
+
+  </style>
 
   <title></title>
 </head>

@@ -36,11 +36,13 @@
         <% end %>
       </div>
 
-      <button class="button is-large is-primary" type="submit" name="button" value="<%= 'next' if @border_color && @border_color == 'green' %>">
-        <%= @border_color && @border_color == 'green' ? 'Next' : 'Submit' %>
+      <button id="submit-button" class="button is-large is-primary" type="submit">
+        Submit
       </button>
 
     </form>
+
+      <span><a class='button is-large is-primary' id="button-next">Next</a></span>
 
   </div>
 
