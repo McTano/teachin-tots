@@ -17,6 +17,10 @@ class Game
     @questions[@current_question_index]
   end
 
+  def number_of_current_question
+    @current_question_index + 1
+  end
+
   def next_question
     @current_question_index += 1
   end
