@@ -1,0 +1,8 @@
+Concept.create(word: "cat", image: "http://i.imgur.com/H10X3rQ.jpg")
+Concept.create(word: "dog", image: "http://i.imgur.com/PuLsUZI.jpg")
+Concept.create(word: "bird", image: "http://i.imgur.com/rCoolmO.jpg")
+Concept.create(word: "elephant", image: "http://i.imgur.com/JT7SP0Mb.jpg")
+Concept.create(word: "monkey", image: "http://i.imgur.com/vlnttkY.jpg")
+Concept.create(word: "seal", image: "http://i.imgur.com/oDN8xHb.jpg")
+Concept.create(word: "sea lion", image: "http://i.imgur.com/3OZ08un.jpg")
+Concept.create(word: "racoon", image: "http://i.imgur.com/iN8H0.jpg")
