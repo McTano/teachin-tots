@@ -4,7 +4,7 @@
     <div class="img-choices" style="display:inline-flex;flex-direction:rows;"">
       <div class="img-holder">
         <img src="<%= choice_url %>" height="100" width="200" style="border:2px solid <%= @border_color && @previous_answer == index ? @border_color : 'transparent' %>">
-        <% unless @previous_answer %>
+        <% unless @previous_answer && @border_color == 'green' %>
           <input type="radio" name="choice_index" value="<%= choices_array.find_index(choice_url) %>">
         <% end %>
       </div>
