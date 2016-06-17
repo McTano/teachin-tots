@@ -26,3 +26,18 @@ Concept.create(word: "William Shakespeare", image: "http://i.imgur.com/WpNPWeP.j
 Concept.create(word: "Edgar Allan Poe", image: "http://i.imgur.com/BPPYlO6.jpg?1", category: "writers")
 Concept.create(word: "Murakami", image: "http://i.imgur.com/aqRnaop.jpg?1", category: "writers")
 Concept.create(word: "Mark Twain", image: "http://i.imgur.com/L7TuRIe.jpg", category: "writers")
+
+# Famous Artworks
+
+Concept.create(word: "Angel of the North (Antony Gormley)", image: "http://i.imgur.com/ywTp5BF.jpg?1", category: "artworks")
+Concept.create(word: "Creation of Adam (Michelangelo)", image: "http://i.imgur.com/vt1aabQ.jpg?1", category: "artworks")
+Concept.create(word: "The Thinker (Auguste Rodin)", image: "http://i.imgur.com/v1nKHJ5.jpg?1", category: "artworks")
+Concept.create(word: "Great Sphinx of Giza", image: "http://i.imgur.com/TQ39ban.jpg?1", category: "artworks")
+Concept.create(word: "The School of Athens (Raphael)", image: "http://i.imgur.com/NMhEV14.jpg?1", category: "artworks")
+Concept.create(word: "Mona Lisa (Leonardo da Vinci)", image: "http://i.imgur.com/iDug6lO.jpg?1", category: "artworks")
+Concept.create(word: "Moai (Easter Island)", image: "http://i.imgur.com/KwW79IW.jpg?1", category: "artworks")
+Concept.create(word: "The Lady of Shallot (John William Waterhouse)", image: "http://i.imgur.com/pAsw39F.jpg?1", category: "artworks")
+Concept.create(word: "The Kiss (Auguste Rodin)", image: "http://i.imgur.com/D4nl9cv.jpg?1", category: "artworks")
+Concept.create(word: "The Kiss (Gustav Klimt)", image: "", category: "artworks")
+Concept.create(word: "David (Michelangelo)", image: "http://i.imgur.com/DCXZVvj.jpg?1", category: "artworks")
+Concept.create(word: "David (Donatello)", image: "http://i.imgur.com/F1VJbkX.jpg?1", category: "artworks")
