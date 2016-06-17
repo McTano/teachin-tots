@@ -42,7 +42,12 @@ post '/play' do
     redirect '/end' unless @game.current_question
   end
 
-  erb :'play/index'
+  if request.xhr?
+    erb :'play/index', layout: false
+  else
+    erb :'play/index'
+  end
+
 end
 
 get '/end' do
