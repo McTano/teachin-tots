@@ -11,6 +11,7 @@ end
 
 post '/play' do
   #set game to current game via session
+  @game = session[:game]
 
   unless params[:button] == 'next'
     #if choice of an answer is passed in params and the choice is correct set border to green otherwise to red
