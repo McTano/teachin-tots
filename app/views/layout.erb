@@ -36,8 +36,19 @@
             }
           });
         });
-
     });
+
+    $(function() {
+        $("#question").draggable({ revert: "invalid" });
+        $("img").droppable({
+          accept: "#question",  
+          drop: function( event, ui ) {
+            $( this )
+            .addClass( "answered" );
+          };
+        });
+    });
+    
   </script>
 
   <title></title>
