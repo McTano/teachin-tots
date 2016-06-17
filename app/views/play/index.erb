@@ -1,24 +1,34 @@
-<% if flash[:info] %>
-  <h2 style='font-color:red'><%= flash[:info] %></h2>
-<% end %>
-<% choices_array = @game.current_question.choices %> 
-<form method="post" action="/play">
-  <% @game.current_question.choices.each_with_index do |choice_url, index| %>
-    <div class="img-choices" style="display:inline-flex;flex-direction:rows;"">
-      <div class="img-holder">
-        <img src="<%= choice_url %>" height="100" width="200" style="border:2px solid <%= @border_color && @previous_answer == index ? @border_color : 'transparent' %>">
-        <% unless @previous_answer && @border_color == 'green' %>
-          <input type="radio" name="choice_index" value="<%= choices_array.find_index(choice_url) %>">
-        <% end %>
-      </div>
-    </div>
+<div class="container has-text-centered">
+  <% if flash[:info] %>
+    <h2 style='font-color:red'><%= flash[:info] %></h2>
   <% end %>
+  <% choices_array = @game.current_question.choices %>
+  <div class="container" style="padding: 128px">
+  <form method="post" action="/play">
+    <% @game.current_question.choices.each_with_index do |choice_url, index| %>
+      <div style="display:inline-flex;flex-direction:rows;">
+        <label name="choice_index">
+          <div>
+            <img src="<%= choice_url %>" height="256px" width="256px" style="border:2px solid <%= @border_color && @previous_answer == index ? @border_color : 'transparent' %>">
+          </div>
+          <% unless @previous_answer && @border_color == 'green' %>
+            <input type="radio" name="choice_index" value="<%= choices_array.find_index(choice_url) %>">
+          <% end %>
+        </label>
+      </div>
+    <% end %>
 
-  <div id="question">
-    <h2><%= @game.current_question.word %></h2>
+    <div class="content is-large">
+      <% unless @border_color == 'green' %>
+        <p>Click <strong><%= @game.current_question.word %></strong> and then Submit</p>
+      <% else %>
+        <h1>Correct!</h1>
+      <% end %>
+    </div>
+
+    <button class="button is-large is-primary" type="submit" name="button" value="<%= 'next' if @border_color && @border_color == 'green' %>">
+      <%= @border_color && @border_color == 'green' ? 'Next' : 'Submit' %>
+    </button>
+  </form>
   </div>
-
-  <button type="submit" name="button" value="<%= 'next' if @border_color && @border_color == 'green' %>">
-    <%= @border_color && @border_color == 'green' ? 'Next' : 'Submit' %>
-  </button>
-</form>
+</div>
