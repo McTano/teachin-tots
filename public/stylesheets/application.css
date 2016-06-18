@@ -7,13 +7,9 @@
   margin-top: 56px;
 }
 
-#navbar {
-  background-color: $warning;
-}
-
 .image_container {
-  animation-name: slide_in;
-  animation-duration: 2s;
+  animation-name: fade_in;
+  animation-duration: 1s;
   animation-timing-function: ease-out;
 }
 
@@ -21,13 +17,13 @@
   cursor: pointer;
 }
 
-@keyframes slide_in {
+
+@keyframes fade_in {
+
   from {
-      transform: translateY(100px);
       opacity: 0;
   }
   to {
-      transform: translateY(0);
       opacity: 1;
   }
 }
