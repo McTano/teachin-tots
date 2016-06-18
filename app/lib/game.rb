@@ -5,8 +5,9 @@ class Game
   attr_reader :number_of_current_question
 
   def initialize(category=nil)
+    @category = category
     @number_of_current_question = 1
-    @current_question = Question.new(category)
+    @current_question = Question.new(@category)
     @tries = 0
   end
 
