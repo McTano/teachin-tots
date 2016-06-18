@@ -41,6 +41,9 @@
           if (b_color === 'red' || b_color === 'green') {
             $('.image_container').css('animation-name','none');
           };
+          if (b_color === 'red' || b_color === '') {
+            $('#button-next').css('visibility','hidden');
+          };
         })
       </script>
 
