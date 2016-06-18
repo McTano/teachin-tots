@@ -17,6 +17,11 @@
   cursor: pointer;
 }
 
+/* remove radio buttons from screen area */
+input[type='radio'], #submit-button {
+  position:absolute;
+  left:-99em;
+}
 
 @keyframes fade_in {
 
