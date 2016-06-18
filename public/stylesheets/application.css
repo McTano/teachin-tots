@@ -11,7 +11,7 @@
   background-color: $warning;
 }
 
-#image_container {
+.image_container {
   animation-name: slide_in;
   animation-duration: 2s;
   animation-timing-function: ease-out;

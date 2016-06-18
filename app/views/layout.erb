@@ -47,31 +47,25 @@
             }
           });
         })
+        .on('mouseover','#question', function() {
+          $(this).css('cursor','pointer');
+        })
+        .on('mouseover','#question', function() {
+          $(this).draggable({ revert: "invalid" });
+        })
+        .on('mouseover mouseenter', 'img', function() {
+          $(this).droppable ( {
+            accept: "#question",
+            drop: function() {
+              $(this).closest('label').children('input[type=radio]').prop('checked', true).change();
+            }
+          });
+        })
     });
   </script>
-  <script>
-    $(document).on('ready ajaxSuccess', function() {
 
-      $('#question').on('mouseover',function () { $(this).css('cursor','pointer')});
-
-      $("#question").draggable({ revert: "invalid" });
-      $("img").droppable ( {
-        accept: "#question",  
-        drop: function( event, ui ) {
-          $(this)
-          .addClass( "answered" );
-        }
-      });
-
-      $('label')
-        .on('drop', function() {
-          $(this).children('input[type=radio]').prop('checked', true).change();
-        });
-    });
-    
-  </script>
   <style>
-    input[type='radio'] {
+    input[type='radio'], #submit-button {
       position:absolute;
       left:-99em;
     }

@@ -1,3 +1,4 @@
+<%= erb :menu if request.xhr? %>
 <div class="container has-text-centered">
   <p class="title">Question <%= @game.number_of_current_question %></p>
   <% if flash[:info] %>
@@ -15,7 +16,7 @@
     <% @game.current_question.choices.each_with_index do |choice_url, index| %>
       <div style="display:inline-flex;flex-direction:rows;">
         <label name="choice_index">
-          <div id="image_container" class="box" style="background-color: <%= @border_color && @previous_answer == index ? @border_color : 'transparent' %>">
+          <div class="box image_container" style="background-color: <%= @border_color && @previous_answer == index ? @border_color : 'transparent' %>">
             <img src="<%= choice_url %>" height="256px" width="256px">
           </div>
           <% unless @previous_answer && @border_color == 'green' %>
@@ -34,7 +35,16 @@
         <% end %>
       </div>
 
-      <button id="submit-button" class="button is-large is-primary" type="submit">
+      <script>
+        $(function() {
+          var b_color = "<%= @border_color %>";
+          if (b_color === 'red' || b_color === 'green') {
+            $('.image_container').css('animation-name','none');
+          };
+        })
+      </script>
+
+      <button id="submit-button" type="submit">
         Submit
       </button>
 
