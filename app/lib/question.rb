@@ -2,8 +2,9 @@ class Question
 
   attr_reader :choices, :word
 
-  def initialize
-    @sample = Concept.order("RANDOM()").limit(3)
+  def initialize(category)
+    category ||= ["philosophers", "artworks", "animals", "writers"].sample
+    @sample = Concept.where("category = '#{category}'").order("RANDOM()").limit(3)
     @word = @sample[0][:word]
     @correct_image = @sample[0][:image]
     @dummy_1 = @sample[1][:image]
