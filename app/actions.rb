@@ -2,6 +2,14 @@ helpers do
   def start_game
     session[:game] = Game.new
   end
+
+  def question_number
+    session[:game].question_number
+  end
+end
+
+before '/play' do
+  @game = session[:game] || start_game
 end
 
 get '/' do
@@ -10,13 +18,10 @@ get '/' do
 end
 
 get '/play' do
-  @game = start_game
   erb :"play/index"
 end
 
 post '/play' do
-  #set game to current game via session
-  @game = session[:game]
 
   if params[:choice_index].nil? && params[:button] == ""
     flash[:info] = "You need to make a choice"

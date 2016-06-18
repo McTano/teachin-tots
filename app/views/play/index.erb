@@ -1,6 +1,6 @@
 <%= erb :menu if request.xhr? %>
 <div class="container has-text-centered">
-  <p class="title">Question <%= @game.question_number %></p>
+  <p class="title">Question <%= question_number %></p>
   <% if flash[:info] %>
     <h2><%= flash[:info] %></h2>
     <% flash[:info] = nil %>
