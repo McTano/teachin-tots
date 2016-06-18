@@ -1,30 +1,30 @@
 class Game
 
-  NUMBER_OF_QUESTIONS = 10
+  NUMBER_OF_QUESTIONS = 10.0
 
-  attr_reader :number_of_current_question
+  attr_reader :question_number, :current_question
 
   def initialize(category=nil)
     @category = category
-    @number_of_current_question = 1
+    @question_number = 1
     @current_question = Question.new(@category)
     @tries = 0
   end
 
   def next_question
-    @current_question = Question.new(@category)
-    @number_of_current_question += 1
+    if @question_number < NUMBER_OF_QUESTIONS
+      @current_question = Question.new(@category)
+      @question_number += 1
+    else
+      @current_question = nil
+    end
   end
 
   def increment_tries
     @tries += 1
   end
 
-  def current_question
-    @current_question unless @number_of_current_question > 10
-  end
-
   def score
-    ((NUMBER_OF_QUESTIONS.to_f / @tries) * 100).to_i
+    ((NUMBER_OF_QUESTIONS / @tries) * 100).to_i
   end
 end

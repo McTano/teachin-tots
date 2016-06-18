@@ -1,6 +1,6 @@
 <%= erb :menu if request.xhr? %>
 <div class="container has-text-centered">
-  <p class="title">Question <%= @game.number_of_current_question %></p>
+  <p class="title">Question <%= @game.question_number %></p>
   <% if flash[:info] %>
     <h2><%= flash[:info] %></h2>
     <% flash[:info] = nil %>
@@ -58,7 +58,7 @@
   </div>
 
   <div class="container is-fluid" style="margin: 20px;">
-    <progress class="progress is-primary" value="<%= @game.number_of_current_question %>" max="10"><%= Game::NUMBER_OF_QUESTIONS %>%</progress>
+    <progress class="progress is-primary" value="<%= @game.question_number %>" max="10"><%= Game::NUMBER_OF_QUESTIONS %>%</progress>
   </div>
 
 </div>
