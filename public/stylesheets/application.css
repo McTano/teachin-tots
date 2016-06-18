@@ -17,6 +17,10 @@
   animation-timing-function: ease-out;
 }
 
+#question {
+  cursor: pointer;
+}
+
 @keyframes slide_in {
   from {
       transform: translateY(100px);

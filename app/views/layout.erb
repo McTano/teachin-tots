@@ -47,18 +47,18 @@
             }
           });
         })
-        .on('mouseover','#question', function() {
-          $(this).css('cursor','pointer');
-        })
-        .on('mouseover','#question', function() {
-          $(this).draggable({ revert: "invalid" });
-        })
-        .on('mouseover mouseenter', 'img', function() {
+        .on('mouseover mouseenter', '.image_container', function() {
           $(this).droppable ( {
             accept: "#question",
             drop: function() {
               $(this).closest('label').children('input[type=radio]').prop('checked', true).change();
             }
+          });
+        })
+        .on('mouseover','#question', function() {
+          $(this).draggable({ 
+            revert: "invalid",
+            cursorAt: {left: -5, top: -5} 
           });
         })
     });
