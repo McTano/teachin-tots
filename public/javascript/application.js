@@ -32,6 +32,8 @@ $(function () {
     .on('mouseover','#question', function() {
       $('.image_container').droppable ( {
         accept : "#question",
+        activeClass: "active_image",
+        hoverClass: "hover_image",
         drop: function() {
           $(this).closest('label').children('input[type=radio]').prop('checked',true).change();
         }
