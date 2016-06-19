@@ -29,18 +29,15 @@ $(function () {
         }
       });
     })
-    .on('mouseover mouseenter', '.image_container', function() {
-      $(this).droppable ( {
-        accept: "#question",
+    .on('mouseover','#question', function() {
+      $('.image_container').droppable ( {
+        accept : "#question",
         drop: function() {
-          $(this).closest('label').children('input[type=radio]').prop('checked', true).change();
+          $(this).closest('label').children('input[type=radio]').prop('checked',true).change();
         }
       });
-    })
-    .on('mouseover','#question', function() {
       $(this).draggable({ 
-        revert: "invalid",
-        cursorAt: {left: -5, top: -5} 
-      });
+        revert: "invalid"
+      })
     })
 });
