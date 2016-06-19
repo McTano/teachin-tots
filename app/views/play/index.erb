@@ -1,6 +1,8 @@
 <%= erb :menu if request.xhr? %>
+
 <div class="container has-text-centered">
-  <p class="title">Question <%= @game.question_number %></p>
+
+<p class="title">Question <%= @game.question_number %></p>
 
   <div class="container">
 
@@ -19,7 +21,6 @@
       </div>
     <% end %>
 
-
     <div class="content is-large">
       <% if answered_correctly?.nil? %>
         <p style="visibility:hidden"></p>
@@ -30,7 +31,7 @@
         <p>Try again - some questions are pretty tough!</p>
       <% end %>
       <% unless answered_correctly? %>
-        <p>Click and drag <strong id="question" class="button"><%= @game.current_question.word %></strong> to the correct picture.</p>
+        <p>Click and drag <strong id="question" class="button is-primary"><%= @game.current_question.word %></strong> to the correct picture.</p>
       <% end %>
     </div>
 
@@ -51,9 +52,7 @@
     </button>
 
   </form>
-
-    <span><a class='button is-large is-primary' id="button-next" style="visibility:hidden">Next</a></span>
-
+  <span><a class='button is-large is-primary' id="button-next" style="visibility:hidden">Next</a></span>
   </div>
 
   <div class="container is-fluid" style="margin: 20px;">

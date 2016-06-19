@@ -13,6 +13,15 @@
   animation-timing-function: ease-out;
 }
 
+@keyframes fade_in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 #question {
   cursor: pointer;
 }
@@ -31,12 +40,31 @@ input[type='radio'], #submit-button {
   left:-99em;
 }
 
-@keyframes fade_in {
+#landing-title {
+  animation-name: slide_down;
+  animation-duration: 2s;
+  animation-timing-function: ease-out;
+}
 
+@keyframes slide_down {
   from {
-      opacity: 0;
+    transform: translateY(-80px);
+    opacity: 0;
   }
   to {
-      opacity: 1;
+    transform: translateY(0px);
+    opacity: 1;
   }
+}
+
+#landing-prompt {
+  animation-name: fade_in;
+  animation-duration: 3s;
+  animation-timing-function: ease-out;
+}
+
+#congrat {
+  animation-name: slide_down;
+  animation-duration: 2s;
+  animation-timing-function: ease-out;
 }
