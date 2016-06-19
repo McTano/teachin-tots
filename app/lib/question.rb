@@ -1,12 +1,11 @@
 class Question
 
-
-  CATEGORIES = ["philosophers", "artworks", "animals", "writers", "hollywood"]
+  CATEGORIES = {"philosophers" => "Great Thinkers", "artworks" => "Famous Artworks", "animals" => "Cute Animals", "writers" => "Notable Authors", "hollywood" => "The Golden Age of Hollywood"}
 
   attr_reader :choices, :word
 
   def initialize(category)
-    category ||= CATEGORIES.sample
+    category ||= CATEGORIES.keys.sample
     sample = Concept.where("category = '#{category}'").order("RANDOM()").limit(3)
     @word = sample[0][:word]
     @correct_image = sample[0][:image]

@@ -1,6 +1,6 @@
 helpers do
-  def start_game
-    session[:game] = Game.new
+  def start_game(category=nil)
+    session[:game] = Game.new(category)
   end
 end
 
@@ -48,6 +48,11 @@ post '/play' do
     erb :'play/index'
   end
 
+end
+
+get '/play/:category' do
+  @game = start_game(params[:category])
+  erb :"play/index"
 end
 
 get '/end' do
