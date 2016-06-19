@@ -1,15 +1,19 @@
 helpers do
-  def start_game
-    session[:game] = Game.new
+  def game
+    session[:game] || session[:game] = Game.new
   end
 
   def question_number
-    session[:game].question_number
+    game.question_number
+  end
+
+  def answered_correctly?
+    game.current_question.correct?(params[:choice_index].to_i)
   end
 end
 
-before '/play' do
-  @game = session[:game] || start_game
+before '/*' do
+  @game = game
 end
 
 get '/' do
@@ -23,13 +27,13 @@ end
 
 post '/play' do
 
-  if params[:choice_index].nil? && params[:button] == ""
-    flash[:info] = "You need to make a choice"
-  end
+  # if params[:choice_index].nil? && params[:button] == ""
+  #   flash[:info] = "You need to make a choice"
+  # end
 
-  unless params[:button] == 'next'
+  unless params[:next] == 'true'
     #if choice of an answer is passed in params and the choice is correct set border to green otherwise to red
-    if params[:choice_index] && @game.current_question.correct?(params[:choice_index].to_i)
+    if answered_correctly?
       @border_color = 'green'
       flash[:info] = "You nailed it!"
     elsif params[:choice_index]
@@ -39,12 +43,12 @@ post '/play' do
 
     #increment number of attemps | record the choice of the previous answer
     if params[:choice_index]
-      @game.increment_tries
+      game.increment_tries
       @previous_answer = params[:choice_index].to_i
     end
   else
-    @game.next_question
-    redirect '/end' unless @game.current_question
+    game.next_question
+    redirect '/end' unless game.current_question
   end
 
   if request.xhr?
@@ -56,6 +60,5 @@ post '/play' do
 end
 
 get '/end' do
-  @game = session[:game]
   erb :'end/index'
 end

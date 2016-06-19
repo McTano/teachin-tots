@@ -1,13 +1,15 @@
 <%= erb :menu if request.xhr? %>
 <div class="container has-text-centered">
   <p class="title">Question <%= question_number %></p>
-  <% if flash[:info] %>
+
+<!--   <% if flash[:info] %>
     <h2><%= flash[:info] %></h2>
     <% flash[:info] = nil %>
   <% end %>
   <% if flash[:info] %>
     <h2 style='font-color:red'><%= flash[:info] %></h2>
-  <% end %>
+  <% end %> -->
+  
   <% choices_array = @game.current_question.choices %>
 
   <div class="container">

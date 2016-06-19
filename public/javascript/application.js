@@ -23,7 +23,7 @@ $(function () {
       $.ajax({
         url: '/play',
         method: 'POST',
-        data: { button: 'next' },
+        data: { next: 'true' },
         success: function (res) {
           $('body').html(res);
         }
