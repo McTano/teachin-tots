@@ -28,7 +28,7 @@ before '/play' do
   @game = game(params[:category])
 end
 
-before '/play/:category' do
+before '/*' do
   @game = game(params[:category])
 end
 
