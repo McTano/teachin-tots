@@ -11,6 +11,7 @@
   animation-name: fade_in;
   animation-duration: 1s;
   animation-timing-function: ease-out;
+  margin-bottom: 20px;
 }
 
 @keyframes fade_in {
@@ -67,4 +68,8 @@ input[type='radio'], #submit-button {
   animation-name: slide_down;
   animation-duration: 2s;
   animation-timing-function: ease-out;
+}
+
+#confirm-text > p {
+  height:40px;
 }
