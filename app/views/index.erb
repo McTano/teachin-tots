@@ -1,18 +1,13 @@
-<p class="title has-text-centered">Welcome to Teaching Tots</p>
+<p id="landing-title" class="title has-text-centered">Welcome to Teaching Tots</p>
+<p class="subtitle has-text-centered"></p>
 
-<div class="container">
-  <p>
-    Banjo kogi etsy, kitsch skateboard actually stumptown four loko fingerstache thundercats waistcoat farm-to-table man bun twee try-hard. Truffaut iPhone blog craft beer. Craft beer beard meggings affogato twee, ramps vinyl. Disrupt sriracha deep v whatever cardigan. Tilde bespoke polaroid pug. Plaid blue bottle beard tumblr sustainable quinoa. Mlkshk kogi meditation thundercats ramps.
-  </p>
-
-  <ul>
-    <% Question::CATEGORIES.each_pair do |keyword, verbose| %>
-      <li> <a href="/play/<%=keyword%>"><%= verbose %> </a></li>
-    <% end %>
-    <li><a href="/play">Grab Bag</a></li>
-  </ul>
+<div class="content has-text-centered">
+  <p id="landing-prompt">Please select a category</p>
 </div>
 
-<div class="container has-text-centered">
-  <a class="button is-large is-primary" href="/play">Start game!</a>
-</div>
+<div class="level has-text-centered">
+  <% Question::CATEGORIES.each_pair do |keyword, verbose| %>
+    <a class="button is-primary is-medium" href="/play/<%=keyword%>"><%= verbose %></a>
+  <% end %>
+  <a class="button is-primary is-medium" href="/play">Grab Bag</a>
+<div>
