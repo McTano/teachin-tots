@@ -3,16 +3,28 @@ helpers do
     session[:game] || session[:game] = Game.new
   end
 
-  def question_number
-    game.question_number
+  def answer_options
+    game.current_question.choices
   end
 
   def selected_answer
-    params[:choice_index].to_i
+    params[:choice_index].to_i if params[:choice_index]
   end
 
   def answered_correctly?
-    game.current_question.correct?(selected_answer)
+    game.current_question.correct?(selected_answer) if selected_answer
+  end
+
+  def answer_class(choice)
+    return "" unless choice == selected_answer
+    
+    if answered_correctly?
+      "correct"
+    elsif answered_correctly?.nil?
+      ""
+    else
+      "wrong"
+    end
   end
 end
 
@@ -40,13 +52,16 @@ post '/play' do
   #   flash[:info] = "You need to make a choice"
   # end
 
+
+
+
   unless params[:next] == 'true'
     if answered_correctly?
       @border_color = 'green'
-      flash[:info] = "You nailed it!"
+      # flash[:info] = "You nailed it!"
     else
       @border_color = 'red'
-      flash[:info] = "Oops... Try again!"
+      # flash[:info] = "Oops... Try again!"
     end
 
     game.increment_tries

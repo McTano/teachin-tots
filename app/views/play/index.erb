@@ -1,6 +1,6 @@
 <%= erb :menu if request.xhr? %>
 <div class="container has-text-centered">
-  <p class="title">Question <%= question_number %></p>
+  <p class="title">Question <%= @game.question_number %></p>
 
 <!--   <% if flash[:info] %>
     <h2><%= flash[:info] %></h2>
@@ -18,7 +18,8 @@
     <% @game.current_question.choices.each_with_index do |choice_url, index| %>
       <div style="display:inline-flex;flex-direction:rows;">
         <label name="choice_index">
-          <div class="box image_container" style="background-color: <%= @border_color && @selected_answer == index ? @border_color : 'transparent' %>">
+          
+          <div class="box image_container <%= answer_class(index) %>">
             <img src="<%= choice_url %>" height="256px" width="256px">
           </div>
           <% unless @selected_answer && @border_color == 'green' %>
