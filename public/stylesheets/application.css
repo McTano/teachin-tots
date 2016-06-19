@@ -17,6 +17,19 @@
   cursor: pointer;
 }
 
+.correct {
+  background-color: #859C27;
+}
+
+.wrong {
+  background-color: #FF4040;
+}
+
+/* remove radio buttons from screen area */
+input[type='radio'], #submit-button {
+  position:absolute;
+  left:-99em;
+}
 
 @keyframes fade_in {
 

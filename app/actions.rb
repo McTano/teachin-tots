@@ -1,7 +1,31 @@
 helpers do
-  def start_game(category=nil)
-    session[:game] = Game.new(category)
+  def game(category=nil)
+    session[:game] || session[:game] = Game.new(category)
   end
+
+  def selected_answer
+    params[:choice_index].to_i if params[:choice_index]
+  end
+
+  def answered_correctly?
+    game.current_question.correct?(selected_answer) if selected_answer
+  end
+
+  def answer_class(choice)
+    return "" unless choice == selected_answer
+
+    if answered_correctly?
+      "correct"
+    elsif answered_correctly?.nil?
+      ""
+    else
+      "wrong"
+    end
+  end
+end
+
+before '/*' do
+  @game = game(params[:category])
 end
 
 get '/' do
@@ -9,37 +33,24 @@ get '/' do
   erb :index
 end
 
+# new route to properly restart the game
+get '/new_play' do
+  session.clear
+  redirect '/play'
+end
+
 get '/play' do
-  @game = start_game
   erb :"play/index"
 end
 
 post '/play' do
-  #set game to current game via session
-  @game = session[:game]
 
-  if params[:choice_index].nil? && params[:button] == ""
-    flash[:info] = "You need to make a choice"
-  end
-
-  unless params[:button] == 'next'
-    #if choice of an answer is passed in params and the choice is correct set border to green otherwise to red
-    if params[:choice_index] && @game.current_question.correct?(params[:choice_index].to_i)
-      @border_color = 'green'
-      flash[:info] = "You nailed it!"
-    elsif params[:choice_index]
-      @border_color = 'red'
-      flash[:info] = "Oops... Try again!"
-    end
-
-    #increment number of attemps | record the choice of the previous answer
-    if params[:choice_index]
-      @game.increment_tries
-      @previous_answer = params[:choice_index].to_i
-    end
+  unless params[:next] == 'true'
+    game.increment_tries
+    @selected_answer = selected_answer
   else
-    @game.next_question
-    redirect '/end' unless @game.current_question
+    game.next_question
+    redirect '/end' unless game.current_question
   end
 
   if request.xhr?
@@ -51,11 +62,9 @@ post '/play' do
 end
 
 get '/play/:category' do
-  @game = start_game(params[:category])
   erb :"play/index"
 end
 
 get '/end' do
-  @game = session[:game]
   erb :'end/index'
 end

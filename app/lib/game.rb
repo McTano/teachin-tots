@@ -20,6 +20,10 @@ class Game
     end
   end
 
+  def answer_options
+    current_question.choices
+  end
+
   def increment_tries
     @tries += 1
   end
