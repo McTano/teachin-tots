@@ -7,8 +7,12 @@ helpers do
     game.question_number
   end
 
+  def selected_answer
+    params[:choice_index].to_i
+  end
+
   def answered_correctly?
-    game.current_question.correct?(params[:choice_index].to_i)
+    game.current_question.correct?(selected_answer)
   end
 end
 
@@ -19,6 +23,11 @@ end
 get '/' do
   session.clear
   erb :index
+end
+
+get '/new_play' do
+  session.clear
+  redirect '/play'
 end
 
 get '/play' do
@@ -32,20 +41,17 @@ post '/play' do
   # end
 
   unless params[:next] == 'true'
-    #if choice of an answer is passed in params and the choice is correct set border to green otherwise to red
     if answered_correctly?
       @border_color = 'green'
       flash[:info] = "You nailed it!"
-    elsif params[:choice_index]
+    else
       @border_color = 'red'
       flash[:info] = "Oops... Try again!"
     end
 
-    #increment number of attemps | record the choice of the previous answer
-    if params[:choice_index]
-      game.increment_tries
-      @previous_answer = params[:choice_index].to_i
-    end
+    game.increment_tries
+    @selected_answer = selected_answer
+
   else
     game.next_question
     redirect '/end' unless game.current_question

@@ -9,7 +9,7 @@
   <% if flash[:info] %>
     <h2 style='font-color:red'><%= flash[:info] %></h2>
   <% end %> -->
-  
+
   <% choices_array = @game.current_question.choices %>
 
   <div class="container">
@@ -18,10 +18,10 @@
     <% @game.current_question.choices.each_with_index do |choice_url, index| %>
       <div style="display:inline-flex;flex-direction:rows;">
         <label name="choice_index">
-          <div class="box image_container" style="background-color: <%= @border_color && @previous_answer == index ? @border_color : 'transparent' %>">
+          <div class="box image_container" style="background-color: <%= @border_color && @selected_answer == index ? @border_color : 'transparent' %>">
             <img src="<%= choice_url %>" height="256px" width="256px">
           </div>
-          <% unless @previous_answer && @border_color == 'green' %>
+          <% unless @selected_answer && @border_color == 'green' %>
             <input type="radio" name="choice_index" value="<%= choices_array.find_index(choice_url) %>">
           <% end %>
         </label>
