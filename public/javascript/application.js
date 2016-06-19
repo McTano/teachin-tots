@@ -1,6 +1,10 @@
 $(function () {
 
   $('body')
+    .on('click', '#nav-toggle', function () {
+      $(this).toggleClass('is-active');
+      $('#nav-menu').toggleClass('is-active');
+    })
     .on('change', 'input[type=radio]', function () {
       var radioButton = $(this);
       radioButton.closest('label').addClass('selected').siblings('label').removeClass('selected');

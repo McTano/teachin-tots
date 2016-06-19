@@ -6,10 +6,10 @@
     <p id="landing-prompt">Please select a category</p>
   </div>
 
-  <div class="level has-text-centered">
+  <div class="level has-text-centered" style="justify-content:center">
     <% Question::CATEGORIES.each_pair do |keyword, verbose| %>
-      <a class="button is-primary is-medium" href="/play/<%=keyword%>"><%= verbose %></a>
+      <a class="button is-primary is-medium" style="margin:5px"href="/play/<%=keyword%>"><%= verbose %></a>
     <% end %>
-    <a class="button is-primary is-medium" href="/play">Grab Bag</a>
+    <a class="button is-primary is-medium" style="margin:5px" href="/play">Grab Bag</a>
   <div>
 </div>
