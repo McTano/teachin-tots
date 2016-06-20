@@ -1,6 +1,6 @@
 helpers do
-  def game(category=nil)
-    session[:game] ||= Game.new(category)
+  def game
+    session[:game] ||= Game.new(params[:category])
   end
 
   def selected_answer
@@ -25,11 +25,15 @@ helpers do
 end
 
 before '/play' do
-  @game = game(params[:category])
+  @game = game
 end
 
-before '/*' do
-  @game = game(params[:category])
+before '/play/:category' do
+  @game = game
+end
+
+before '/end' do
+  @game = game
 end
 
 get '/' do
@@ -37,14 +41,8 @@ get '/' do
   erb :index
 end
 
-# new route to properly restart the game
-get '/new_play' do
-  session.clear
-  redirect '/'
-end
-
 get '/play' do
-  erb :"play/index"
+  erb :'play/index'
 end
 
 post '/play' do
@@ -66,7 +64,7 @@ post '/play' do
 end
 
 get '/play/:category' do
-  erb :"play/index"
+  erb :'play/index'
 end
 
 get '/end' do

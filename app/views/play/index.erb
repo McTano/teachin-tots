@@ -1,64 +1,62 @@
 <%= erb :menu if request.xhr? %>
 
-<div id="main-container" class="container is-fluid">
-  <div class="container has-text-centered">
+<div class="container has-text-centered">
 
-  <p class="title">Question <%= @game.question_number %></p>
+<p class="title">Question <%= @game.question_number %></p>
 
-    <div class="container">
+  <div class="container">
 
-    <form method="post" action="/play">
-      <% @game.answer_options.each_with_index do |choice_url, index| %>
-        <div style="display:inline-flex;flex-direction:rows;">
-          <label name="choice_index">
-            
-            <div class="box image_container <%= answer_class(index) %>">
-              <img src="<%= choice_url %>" height="256px" width="256px">
-            </div>
-            <% unless answered_correctly? %>
-              <input type="radio" name="choice_index" value="<%= @game.answer_options.find_index(choice_url) %>">
-            <% end %>
-          </label>
-        </div>
-      <% end %>
-
-      <div id="confirm-text" class="content is-large">
-        <% if answered_correctly?.nil? %>
-          <p></p>
-        <% elsif answered_correctly? %>
-          <p>Well done - this is correct!</p>
-          <p></p>
-        <% else %>
-          <p>Try again - some questions are pretty tough!</p>
-        <% end %>
-        <% unless answered_correctly? %>
-          <p>Click and drag <strong id="question" class="button is-primary"><%= @game.current_question.word %></strong> to the correct picture.</p>
-        <% end %>
+  <form method="post" action="/play">
+    <% @game.answer_options.each_with_index do |choice_url, index| %>
+      <div style="display:inline-flex;flex-direction:rows;">
+        <label name="choice_index">
+          
+          <div class="box image_container <%= answer_class(index) %>">
+            <img src="<%= choice_url %>" height="256px" width="256px">
+          </div>
+          <% unless answered_correctly? %>
+            <input type="radio" name="choice_index" value="<%= @game.answer_options.find_index(choice_url) %>">
+          <% end %>
+        </label>
       </div>
+    <% end %>
 
-      <script>
-        $(function() {
-          var correct_answer = "<%= answered_correctly? %>";
-          if (correct_answer !== "") {
-            $('.image_container').css('animation-name','none');
-          };
-          if (correct_answer === 'true') {
-            $('#button-next').css('visibility','visible')
-          };
-        })
-      </script>
-
-      <button id="submit-button" type="submit">
-        Submit
-      </button>
-
-    </form>
-    <span><a class='button is-large is-primary' id="button-next" style="visibility:hidden">Next</a></span>
+    <div class="content is-large">
+      <% if answered_correctly?.nil? %>
+        <p style="visibility:hidden"></p>
+      <% elsif answered_correctly? %>
+        <p>Well done - this is correct!</p>
+        <p style="visibility:hidden"></p>
+      <% else %>
+        <p>Try again - some questions are pretty tough!</p>
+      <% end %>
+      <% unless answered_correctly? %>
+        <p>Click and drag <strong id="question" class="button is-primary"><%= @game.current_question.word %></strong> to the correct picture.</p>
+      <% end %>
     </div>
 
-    <div class="container is-fluid" style="margin: 20px;">
-      <progress class="progress is-primary" value="<%= @game.question_number %>" max="10"><%= Game::NUMBER_OF_QUESTIONS %>%</progress>
-    </div>
+    <script>
+      $(function() {
+        var correct_answer = "<%= answered_correctly? %>";
+        if (correct_answer !== "") {
+          $('.image_container').css('animation-name','none');
+        };
+        if (correct_answer === 'true') {
+          $('#button-next').css('visibility','visible')
+        };
+      })
+    </script>
 
+    <button id="submit-button" type="submit">
+      Submit
+    </button>
+
+  </form>
+  <span><a class='button is-large is-primary' id="button-next" style="visibility:hidden">Next</a></span>
   </div>
+
+  <div class="container is-fluid" style="margin: 20px;">
+    <progress class="progress is-primary" value="<%= @game.question_number %>" max="10"><%= Game::NUMBER_OF_QUESTIONS %>%</progress>
+  </div>
+
 </div>
